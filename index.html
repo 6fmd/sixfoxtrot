@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Six-Foxtrot</title>
+  <style>
+    @font-face {
+      font-family: D;
+      src: url(https://gh-assets.6f.md/fonts/Didot.woff2) format("woff2");
+    }
+    * {
+      margin: 0;
+    }
+    body {
+      background: #000;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    p {
+      font-family: D, serif;
+      font-size: 22vw;
+      color: #fff;
+      letter-spacing: 0.05em;
+    }
+    span {
+      animation: f 0.1s ease-out both;
+    }
+    @keyframes f {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+  <p id="t"></p>
+  <script>
+    const s = "FFFFFF",
+      e = document.getElementById("t");
+    document.fonts.ready.then(() => {
+      const t = performance.now();
+      let n = 0;
+      (function r(now) {
+        const c = Math.ceil(((now - t) / 2000) * s.length);
+        for (; n < c && n < s.length; n++) {
+          const sp = document.createElement("span");
+          sp.textContent = s[n];
+          e.appendChild(sp);
+        }
+        if (now - t < 2000) requestAnimationFrame(r);
+      })(t);
+    });
+  </script>
+</html>
